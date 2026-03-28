@@ -1,0 +1,14 @@
+name: precip-downscaling-torch
+# Environment for PyTorch-based models (DDPM, scripts 10–11)
+# Install with:  conda env create -f environment_torch.yml
+channels:
+  - conda-forge
+  - pytorch
+  - defaults
+dependencies:
+  - python=3.10
+  - numpy>=1.24
+  - matplotlib>=3.7
+  - pip
+  - pip:
+    - torch>=2.0
