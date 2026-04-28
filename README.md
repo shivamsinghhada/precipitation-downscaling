@@ -2,8 +2,8 @@
 
 **Journal:** Geoscientific Model Development (GMD)  
 **Authors:** [Author 1], [Author 2], ...  
-**Zenodo DOI:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)  
-**Manuscript DOI:** [add once accepted]  
+**Zenodo DOI:** https://doi.org/10.5281/zenodo.19297906
+**Manuscript DOI:**  https://doi.org/10.5194/egusphere-2026-861 (ppreprint)
 **License:** MIT
 
 ---
@@ -16,7 +16,7 @@ precipitation downscaling over three agricultural regions in the contiguous
 United States (CONUS), at two spatial downscaling factors:
 
 | Experiment | LR input | HR target | Factor |
-|---|---|---|---|
+
 | 8×  downscaling | 16×16 px | 128×128 px | 8×  |
 | 16× downscaling | 8×8 px   | 128×128 px | 16× |
 
@@ -26,59 +26,6 @@ United States (CONUS), at two spatial downscaling factors:
 
 All models produce probabilistic ensemble outputs trained over 10 random seeds.
 
----
-
-## Repository Structure
-
-```
-.
-├── README.md                        ← You are here
-├── environment_tf.yml               ← Conda env: TensorFlow (U-Net / WGAN + analysis)
-├── environment_torch.yml            ← Conda env: PyTorch (DDPM)
-│
-├── preprocessing/                   ← Shared data pipeline (all models)
-│   ├── 00_download_era5land.py
-│   ├── 01_era5land_hourly_to_daily.py
-│   ├── 02_crop_regions.py
-│   ├── 03_filter_dry_images.py
-│   ├── 04_plot_study_area.py
-│   ├── 05_prepare_dataset.py        ← 8×  LR + splits
-│   └── 05b_prepare_dataset_16x.py   ← 16× LR + splits
-│
-├── models/                          ← Model architecture definitions
-│   ├── __init__.py
-│   ├── models_wgan_8x.py            ← TF: U-Net, critic, WGAN (8×)
-│   ├── models_wgan_16x.py           ← TF: U-Net, critic, WGAN (16×)
-│   └── models_ddpm.py               ← PyTorch: DDPM U-Net + diffusion schedule
-│
-├── training/
-│   ├── wgan_8x/                     ← TensorFlow — 8× experiment
-│   │   ├── 06_train_unet.py
-│   │   └── 07_train_wgan.py
-│   ├── wgan_16x/                    ← TensorFlow — 16× experiment
-│   │   ├── 08_train_unet_16x.py
-│   │   └── 09_train_wgan_16x.py
-│   ├── ddpm_8x/                     ← PyTorch — 8× experiment
-│   │   └── 10_train_ddpm_8x.py
-│   └── ddpm_16x/                    ← PyTorch — 16× experiment
-│       └── 11_train_ddpm_16x.py
-│
-├── analysis/                        ← Post-training figures and metrics
-│   ├── __init__.py
-│   ├── plot_utils.py                ← Shared palette, colormap, helpers
-│   ├── 12_plot_loss_curves.py       ← Fig: training/validation loss (all models)
-│   ├── 13_plot_sample_grid.py       ← Fig 3/S3: visual comparison grid
-│   ├── 14_plot_marginal_statistics.py ← Fig 4/S4: density scatter statistics
-│   ├── 15_plot_spatial_correlation.py ← Fig 5/S8: lagged autocorrelation
-│   ├── 16_plot_exceedance_and_qq.py ← Fig 7/S7: exceedance & Q–Q plot
-│   ├── 17_plot_mass_conservation.py ← Fig 6: mass consistency at multiple scales
-│   └── 18_plot_composite_metrics.py ← Fig 8: power spectrum, FSS, ROC, SSIM
-│
-└── results/                         ← Output figures (populated after running analysis)
-    └── README.md
-```
-
----
 
 ## Input Data
 
@@ -164,8 +111,8 @@ Run these once, in order, before any model training:
 ```bash
 cd preprocessing/
 
-python 00_download_era5land.py          # ~several days (CDS queue)
-python 01_era5land_hourly_to_daily.py   # ~35 min for 1980–2014
+python 00_download_era5land.py          # ~several hours (CDS queue)
+python 01_era5land_hourly_to_daily.py   # 
 python 02_crop_regions.py
 python 03_filter_dry_images.py
 python 04_plot_study_area.py            # generates Figure 1
@@ -322,19 +269,12 @@ and are not redistributed in this repository.
 
 If you use this code, please cite both the manuscript and this Zenodo archive:
 
-**Manuscript:**
-> [Author 1], [Author 2], et al. ([YEAR]). *[Manuscript Title]*.
-> Geoscientific Model Development. https://doi.org/[MANUSCRIPT DOI]
 
-**Code archive:**
-> [Author 1], [Author 2], et al. ([YEAR]).
-> *Code for: [Manuscript Title]* [Software].
-> Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
 
 ---
 
 ## Contact
 
-For questions about this code, contact [Author Name] at [email@institution.edu].  
+For questions about this code, contact [Shivam Singh] at [wpa8me@virginia.edu/ shivam0601ce@gmail.com].  
 For issues with specific scripts, please open a GitHub issue with the script
 name and the full error message.
