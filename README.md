@@ -1,7 +1,8 @@
 # Probabilistic Precipitation Downscaling using U-Net, WGAN-GP, and DDPM
 
 **Journal:** Geoscientific Model Development (GMD)  
-**Authors:** [Author 1], [Author 2], ...  
+**Authors:** 
+Shivam Singh*, Simon Michael Papalexiou, Hebatallah M. Abdelmoaty, Tom Hartvigsen, Antonios Mamalakis  
 **Zenodo DOI:** https://doi.org/10.5281/zenodo.19297906
 **Manuscript DOI:**  https://doi.org/10.5194/egusphere-2026-861 (ppreprint)
 **License:** MIT
