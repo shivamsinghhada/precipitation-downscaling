@@ -1,45 +1,44 @@
 """
-Script:      05b_prepare_dataset_16x.py
+Script:      05_prepare_dataset.py
 
 Description:
-    Prepares LR-HR pairs for the 16x downscaling experiment
-    (8x8 -> 128x128).
+    Loads the three filtered regional precipitation arrays, concatenates them
+    in the order:
 
-    The three filtered regional arrays are concatenated in this order:
+        CentralPlains → Northwest → Northeast
 
-        CentralPlains -> Northwest -> Northeast
+    creates paired low-resolution inputs using 8× block averaging
+    (128×128 → 16×16), and applies the original index-based split.
 
-    Regional sample counts:
-        CentralPlains = 11025
-        Northwest     = 11747
-        Northeast     = 12348
+    Important:
+        The test set starts at index 22772, which is exactly where the
+        Northeast region begins after concatenating:
 
-    Therefore, Northeast begins at index:
+            CentralPlains = 11025 samples
+            Northwest     = 11747 samples
+            Northeast     = 12348 samples
 
-        11025 + 11747 = 22772
+            11025 + 11747 = 22772
 
-    Revised split:
-        Train : indices 0     - 19199
-        Val   : indices 19200 - 22503
-        Gap   : indices 22504 - 22771
-        Test  : indices 22772 - end
+    Therefore, the test set contains Northeast samples only.
 
-    Thus, the test set contains Northeast samples only.
-
-Inputs:
-    Filtered .npz files produced by 03_filter_dry_images.py
+Splits:
+    Train : indices 0     – 19199
+    Val   : indices 19200 – 22503
+    Gap   : indices 22504 – 22771
+    Test  : indices 22772 – 35119
 
 Outputs:
-    dataset_splits_16x.npz containing:
-        Xtrain, Xval, Xtest  -- LR arrays (N, 8, 8)
-        Ytrain, Yval, Ytest  -- HR arrays (N, 128, 128)
+    dataset_splits.npz containing:
+        Xtrain, Xval, Xtest
+        Ytrain, Yval, Ytest
 """
 
 # ── USER CONFIGURATION ──────────────────────────────────────────────────────
 FILTERED_DIR = "/path/to/ERA5_land/Filtered"
 OUTPUT_DIR   = "/path/to/ERA5_land/Dataset"
 
-DOWNSCALE_FACTOR = 16   # 128x128 -> 8x8
+DOWNSCALE_FACTOR = 8   # 128×128 → 16×16
 # ────────────────────────────────────────────────────────────────────────────
 
 import os
@@ -48,7 +47,7 @@ import numpy as np
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 
-# ── Load filtered regional arrays ───────────────────────────────────────────
+# ── Fixed regional order ────────────────────────────────────────────────────
 regions = ["CentralPlains", "Northwest", "Northeast"]
 arrays = []
 
@@ -68,7 +67,7 @@ for region in regions:
     arrays.append(arr)
 
 
-# ── Concatenate regions in fixed order ──────────────────────────────────────
+# ── Concatenate regions ─────────────────────────────────────────────────────
 data_hr = np.concatenate(arrays, axis=0).astype(np.float32)
 
 n_central = arrays[0].shape[0]
@@ -87,15 +86,15 @@ print(f"  Northeast    : {northeast_start} to {data_hr.shape[0] - 1}")
 print(f"\nCombined HR dataset shape: {data_hr.shape}")
 
 
-# ── Block-average downscaling: 128x128 -> 8x8 ───────────────────────────────
-def block_average_batch(arr: np.ndarray, factor: int = 16) -> np.ndarray:
+# ── Block-average downscaling ───────────────────────────────────────────────
+def block_average_batch(arr: np.ndarray, factor: int = 8) -> np.ndarray:
     """
     Downscale a batch of 2-D fields using block averaging.
 
-    Input:
+    Input shape:
         arr: (N, H, W)
 
-    Output:
+    Output shape:
         (N, H/factor, W/factor)
     """
     N, H, W = arr.shape
@@ -114,7 +113,7 @@ def block_average_batch(arr: np.ndarray, factor: int = 16) -> np.ndarray:
     ).mean(axis=(2, 4))
 
 
-print(f"\nCreating LR fields using {DOWNSCALE_FACTOR}x block averaging...")
+print(f"\nCreating LR fields using {DOWNSCALE_FACTOR}× block averaging...")
 data_lr = block_average_batch(data_hr, factor=DOWNSCALE_FACTOR).astype(np.float32)
 
 print(f"HR shape: {data_hr.shape}")
@@ -137,7 +136,7 @@ if TEST_START != northeast_start:
 if N != 35120:
     print(
         f"\nWarning: Total sample count is {N}, not 35120. "
-        "Please verify that the filtered regional files match the original setup."
+        "Proceeding with the available data, but please verify consistency."
     )
 
 if TEST_START > N:
@@ -156,7 +155,7 @@ Yval   = data_hr[TRAIN_END:VAL_END]
 Ytest  = data_hr[TEST_START:N]
 
 
-# ── Print summary ───────────────────────────────────────────────────────────
+# ── Summary ─────────────────────────────────────────────────────────────────
 print("\nFinal split summary:")
 print(f"  Xtrain: {Xtrain.shape}")
 print(f"  Xval  : {Xval.shape}")
@@ -174,7 +173,7 @@ print("  Test  : Northeast only")
 
 
 # ── Save ────────────────────────────────────────────────────────────────────
-out_path = os.path.join(OUTPUT_DIR, "dataset_splits_16x.npz")
+out_path = os.path.join(OUTPUT_DIR, "dataset_splits.npz")
 
 np.savez_compressed(
     out_path,
@@ -186,5 +185,5 @@ np.savez_compressed(
     Ytest=Ytest,
 )
 
-print(f"\nSaved splits to: {out_path}")
-print("Next step: run 08_train_unet_16x.py")
+print(f"\nSaved dataset splits to: {out_path}")
+print("Next step: run 06_train_unet.py")

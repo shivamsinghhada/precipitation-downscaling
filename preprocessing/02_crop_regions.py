@@ -6,9 +6,6 @@ Description: Crops the continental-US ERA5-Land daily precipitation data
                2. Northwest        (36.6–49.4°N, 121.8–109.0°W)
                3. Northeast        (36.6–49.4°N,  90.4–77.6°W)
 
-             ERA5-Land latitudes are stored in descending order; the slice
-             direction is therefore reversed (lat_max → lat_min).
-
 Inputs:      Annual daily NetCDF files produced by 01_era5land_hourly_to_daily.py
              Variable: daily_precip (time, latitude, longitude)
 Outputs:     One NetCDF per region in CROP_DIR,
@@ -17,8 +14,6 @@ Outputs:     One NetCDF per region in CROP_DIR,
 Usage:       python 02_crop_regions.py
 
 Requirements: xarray, glob  (see environment.yml)
-Author:       [Your Name]
-Date:         [YYYY-MM-DD]
 """
 
 # ── USER CONFIGURATION ──────────────────────────────────────────────────────

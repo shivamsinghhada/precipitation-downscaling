@@ -1,5 +1,5 @@
 """
-Script:      analysis/13_plot_sample_grid.py
+Script:      analysis/plot_sample_grid_Figure3_S3.py
 Description: Visual comparison grid — Figure 3 / Supplementary Figure S3.
 
              Produces a 5-row × N_COLS figure showing, for each selected
@@ -19,12 +19,9 @@ Inputs:      dataset_splits.npz   (for Xtest, Ytest)
              DDPM prediction .npy for one seed
 Outputs:     comparison_grid.png  in OUTPUT_DIR
 
-Usage:       python analysis/13_plot_sample_grid.py
+Usage:       python analysis/plot_sample_grid_Figure3_S3.py
 
 Requirements: numpy, tensorflow, matplotlib  (see environment_tf.yml)
-Author:       [Your Name]
-Date:         [YYYY-MM-DD]
-"""
 
 # ── USER CONFIGURATION ──────────────────────────────────────────────────────
 DATASET_PATH  = "/path/to/ERA5_land/Dataset/dataset_splits.npz"

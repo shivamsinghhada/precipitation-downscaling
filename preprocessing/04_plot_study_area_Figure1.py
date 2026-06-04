@@ -16,8 +16,6 @@ Outputs:     study_area_map.png  (300 dpi) in FIGURE_DIR
 Usage:       python 04_plot_study_area.py
 
 Requirements: matplotlib, cartopy  (see environment.yml)
-Author:       [Your Name]
-Date:         [YYYY-MM-DD]
 """
 
 # ── USER CONFIGURATION ──────────────────────────────────────────────────────

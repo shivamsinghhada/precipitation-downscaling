@@ -24,8 +24,6 @@ Description: Neural network architectures for the 16× statistical downscaling
              import directly from this module.
 
 Requirements: tensorflow>=2.12  (see environment.yml)
-Author:       [Your Name]
-Date:         [YYYY-MM-DD]
 """
 
 import tensorflow as tf

@@ -1,5 +1,5 @@
 """
-Script:      analysis/15_plot_spatial_correlation.py
+Script:      analysis/plot_spatial_correlation_Figure6.py
 Description: Lagged spatial autocorrelation figures — Figure 5 and
              Supplementary Figure S8.
 
@@ -21,11 +21,8 @@ Outputs:     spatial_corr_combined.png      — Figure 5
              spatial_corr_ddpm_seeds.png    — Figure S8 (DDPM)
              (all saved to OUTPUT_DIR)
 
-Usage:       python analysis/15_plot_spatial_correlation.py
+Usage:       python analysis/plot_spatial_correlation_Figure6.py
 
-Requirements: numpy, tensorflow, pandas, seaborn, matplotlib  (see environment_tf.yml)
-Author:       [Your Name]
-Date:         [YYYY-MM-DD]
 """
 
 # ── USER CONFIGURATION ──────────────────────────────────────────────────────

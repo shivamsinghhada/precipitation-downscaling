@@ -12,8 +12,6 @@ Description: Defines the neural network architectures used in the 8× statistica
              directly from this module so architectures are defined exactly once.
 
 Requirements: tensorflow>=2.12  (see environment.yml)
-Author:       [Your Name]
-Date:         [YYYY-MM-DD]
 """
 
 import tensorflow as tf

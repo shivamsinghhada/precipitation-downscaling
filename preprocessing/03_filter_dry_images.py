@@ -24,8 +24,6 @@ Outputs:     Three NumPy arrays (one per region) saved as compressed .npz:
 Usage:       python 03_filter_dry_images.py
 
 Requirements: numpy, xarray  (see environment.yml)
-Author:       [Your Name]
-Date:         [YYYY-MM-DD]
 """
 
 # ── USER CONFIGURATION ──────────────────────────────────────────────────────

@@ -19,8 +19,6 @@ Outputs:     One NetCDF per year in DAILY_DIR,
 Usage:       python 01_era5land_hourly_to_daily.py
 
 Requirements: numpy, xarray  (see environment.yml)
-Author:       [Your Name]
-Date:         [YYYY-MM-DD]
 """
 
 # ── USER CONFIGURATION ──────────────────────────────────────────────────────

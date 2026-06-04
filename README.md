@@ -270,6 +270,14 @@ and are not redistributed in this repository.
 
 If you use this code, please cite both the manuscript and this Zenodo archive:
 
+**Manuscript:**
+
+> Shivam Singh, Simon Michael Papalexiou, Hebatallah M. Abdelmoaty,
+> Tom Hartvigsen, Antonios Mamalakis (2026).
+> Comprehensive Inter-comparison of Generative AI Models for
+> Super-Resolution Precipitation Downscaling Across Hydroclimatic Regimes.
+> Geoscientific Model Development (Preprint).
+> https://egusphere.copernicus.org/preprints/2026/egusphere-2026-861
 
 
 ---

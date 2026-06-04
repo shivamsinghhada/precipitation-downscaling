@@ -1,5 +1,5 @@
 """
-Script:      analysis/17_plot_mass_conservation.py
+Script:      analysis/plot_mass_conservation_Figure4_S5.py
 Description: Mass (depth) consistency at multiple spatial aggregation scales
              — Figure 6.
 
@@ -17,9 +17,7 @@ Outputs:     mass_consistency.png  in OUTPUT_DIR
 
 Usage:       python analysis/17_plot_mass_conservation.py
 
-Requirements: numpy, tensorflow, matplotlib, scipy  (see environment_tf.yml)
-Author:       [Your Name]
-Date:         [YYYY-MM-DD]
+
 """
 
 # ── USER CONFIGURATION ──────────────────────────────────────────────────────

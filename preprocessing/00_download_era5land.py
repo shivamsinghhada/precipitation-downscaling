@@ -27,13 +27,8 @@ Outputs:     Monthly ZIP files in HOURLY_DIR,
 Usage:       python 00_download_era5land.py
 
              Downloads ~35 years × 12 months = 420 requests.
-             CDS rate-limits to ~10 active requests; expect this to take
-             several days depending on queue length.  Already-downloaded
-             months are automatically skipped.
-
 Requirements: cdsapi  (pip install cdsapi)
-Author:       [Your Name]
-Date:         [YYYY-MM-DD]
+
 """
 
 # ── USER CONFIGURATION ──────────────────────────────────────────────────────

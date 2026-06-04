@@ -25,10 +25,6 @@ Functions
 build_conditional_unet(scale_factor) : convenience factory for 8× or 16×
 
 Requirements: torch>=2.0  (see environment.yml)
-Reference:    Ho et al. (2020) "Denoising Diffusion Probabilistic Models"
-              https://arxiv.org/abs/2006.11239
-Author:       [Your Name]
-Date:         [YYYY-MM-DD]
 """
 
 import math
@@ -48,7 +44,7 @@ class Diffusion:
 
     Parameters
     ----------
-    T      : int,   total diffusion timesteps (e.g. 100)
+    T      : int,   total diffusion timesteps (e.g. 500)
     device : str or torch.device
 
     Key attributes
@@ -58,7 +54,7 @@ class Diffusion:
     beta      : per-step beta,   shape (T,)
     """
 
-    def __init__(self, T: int = 100, device: str = "cpu"):
+    def __init__(self, T: int = 500, device: str = "cpu"):
         self.T      = T
         self.device = device
 

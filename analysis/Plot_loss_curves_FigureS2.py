@@ -1,5 +1,5 @@
 """
-Script:      analysis/12_plot_loss_curves.py
+Script:      analysis/Plot_loss_curves_FigureS2.py
 Description: Plots training and validation loss curves for all three model
              families across all 10 seeds:
 
@@ -22,12 +22,7 @@ Inputs:
 Outputs:     loss_curves_unet.png, loss_curves_wgan.png, loss_curves_ddpm.png
              in OUTPUT_DIR
 
-Usage:       python analysis/12_plot_loss_curves.py
-
-Requirements: numpy, matplotlib  (see environment_tf.yml)
-Author:       [Your Name]
-Date:         [YYYY-MM-DD]
-"""
+Usage:       python analysis/Plot_loss_curves_FigureS2.py
 
 # ── USER CONFIGURATION ──────────────────────────────────────────────────────
 # Paths for the 8× experiment — change to 16× equivalents as needed.
